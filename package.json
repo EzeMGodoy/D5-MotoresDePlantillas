@@ -1,6 +1,6 @@
 {
-  "name": "desafio-api-restul",
-  "description": "Desafio: API RESTfull",
+  "name": "desafio5-motores-de-plantillas",
+  "description": "Desafio 5: Motores de Plantillas",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,8 +9,9 @@
   "author": "Ezequiel Matías Godoy",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1",
-    "express-useragent": "^1.0.15"
+    "cors": "^2.8.5",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.2",

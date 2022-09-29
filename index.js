@@ -1,34 +1,28 @@
 const express = require("express");
-const useragent = require("express-useragent");
 const path = require("path");
-require("dotenv").config();
-const productos = require("./routers/productos");
+const cors = require("cors");
+const apiRouters = require("./routers/api");
+const viewsRouters = require("./routers/views");
 
 const app = express();
 
-const PORT = process.env.NODE_PORT;
-const ENV = process.env.NODE_ENV;
-
-//! Middleware incorporado
+const PORT = process.env.PORT;
+const ENV = process.env.ENV;
+app.use(cors());
+app.use("/", express.static(path.join(__dirname, "public/")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/static", express.static(path.join(__dirname, "public")));
 
-//! Middleware de terceros
-app.use(useragent.express());
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-app.use("/api", productos);
-
-//! Middleware de manejo de errores
-app.use(function (err, req, res, next) {
-  console.log(err.stack);
-  res.status(500).send("Algo no salió bien");
-});
+app.use("/api", apiRouters);
+app.use("/", viewsRouters);
 
 const server = app.listen(PORT, () => {
-  console.log(`Servidor HTTP escuchando en el puerto ${server.address().port}`);
+  console.log(`Servidor Http en el puerto ${server.address().port}`);
   console.log(`http://localhost:${server.address().port}`);
-  console.log(`Environment: ${ENV}`);
+  console.log(`evironment:${ENV}`);
 });
 
-server.on("error", (error) => console.log(`Error en servidor ${error}`));
+server.on("error", (err) => console.log(`error en el servidor ${err}`));
