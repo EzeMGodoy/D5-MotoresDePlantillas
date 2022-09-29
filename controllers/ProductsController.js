@@ -22,7 +22,7 @@ class ProductsController {
       throw error;
     }
   }
-  /* Obtener productos por ID*/
+  /* Obtener producto por id*/
   static async getProId(id) {
     try {
       console.log("params.id", id);

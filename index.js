@@ -25,4 +25,6 @@ const server = app.listen(PORT, () => {
   console.log(`evironment:${ENV}`);
 });
 
+// const server = app.listen(8080, () => {});
+
 server.on("error", (err) => console.log(`error en el servidor ${err}`));
